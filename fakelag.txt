@@ -1,0 +1,23 @@
+bool __stdcall ClientHook_s::WriteUserDeltaCmd ( bf_write *buf, int from, int to, bool isnewcommand )
+{
+if ( g_pEngine->IsInGame() && Valve::RandomInt ( 0, 5 ) == 5 )
+{
+return false;
+}
+
+CUserCmd nullCmd;
+CUserCmd *pCmdFrom = &nullCmd, *pCmdTo = &nullCmd;
+
+pCmdTo = g_pInput->GetUserCmd ( to );
+
+if ( from != -1 ) g_pInput->GetUserCmd ( from );
+
+WriteUserCmd ( buf, pCmdTo, pCmdFrom );
+
+return ( !buf->IsOverflowed() );
+}
+typedef void ( __cdecl *WriteUserCmd_t )( bf_write*, CUserCmd *, CUserCmd* );
+
+static WriteUserCmd_t WriteUserCmd = NULL;
+
+WriteUserCmd = ( WriteUserCmd_t )Memory::FindPattern ( g_pEngineBase->g_dwClient, "\x55\x8B\xEC\x8B\x45\x10\x8B\x48\x04" );

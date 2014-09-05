@@ -1,0 +1,47 @@
+bool __fastcall CreatMove_thinks::TriggerbotSpread(CUserCmd* cmd){
+
+CBaseEntity *pLocal = GBase.GetLocalEntity();
+player_info_t pinfo;
+trace_t tr;
+Ray_t ray;
+Vector vStart,vEnd,vForward,Origin;
+QAngle vCurAngles;
+vStart = GBase.GetEyePosition(GBase.GetLocalEntity());
+    g_pEngine->GetViewAngles(vCurAngles);
+
+gNospread.GetSpreadVector(cmd->random_seed, vCurAngles, vForward);
+    vEnd = vStart + (vForward * 8192);
+    ray.Init(vStart, vEnd);
+g_pEnginetrace->TraceRay ( ray, MASK_NPCWORLDSTATIC|CONTENTS_SOLID|CONTENTS_MOVEABLE|CONTENTS_MONSTER|CONTENTS_WINDOW|CONTENTS_DEBRIS|CONTENTS_HITBOX,NULL, &tr );
+/*if(Gvar.trigger_box){*/
+if(tr.hitbox < 0){
+return false;
+}
+if(tr.hitbox >0){
+return true;
+}
+/*}*/
+if( tr.m_pEnt->GetIClientEntity() == NULL )
+return false;
+C_BasePlayer* pPlayer  =  dynamic_cast<C_BasePlayer*>(tr.m_pEnt->GetIClientEntity());
+IClientEntity* pRemoteEnt = (IClientEntity*)g_pEntList->GetClientEntity( tr.m_pEnt->index/*index*/  ); 
+
+    CBaseEntity* pRemoteBEnt = (CBaseEntity*)pRemoteEnt->GetBaseEntity();
+//we done same team fix xd
+
+if( GBase.GetBaseEntityTeamNum(pRemoteBEnt) == GBase.GetBaseEntityTeamNum(GBase.GetLocalEntity() ))
+return false;
+/*if(Gvar.trigger_box){
+if(tr.hitbox != Gvar.trigger_box) return false;
+}*/
+if( pPlayer == NULL )
+return false; 
+
+if( !pPlayer->IsAlive() || !pPlayer->GetTeamNumber() )
+return false;
+
+
+return true;
+
+
+}

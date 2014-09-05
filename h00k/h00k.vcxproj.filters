@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Hack">
+      <UniqueIdentifier>{e24b1fb1-1924-49ca-a12a-08189dd32097}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="needed.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="offsets.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="aimbot.cpp">
+      <Filter>Hack</Filter>
+    </ClCompile>
+    <ClCompile Include="esp.cpp">
+      <Filter>Hack</Filter>
+    </ClCompile>
+    <ClCompile Include="nospread.cpp">
+      <Filter>Hack</Filter>
+    </ClCompile>
+    <ClCompile Include="cvars.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="esp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="needed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="offsets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aimbot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nospread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cvars.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
